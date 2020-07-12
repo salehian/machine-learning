@@ -44,3 +44,5 @@ naive_bayes.fit(training_data, y_train)
 # Make Predictions
 predictions = naive_bayes.predict(test_data)
 
+# Print Accuracy score
+print('Accuracy score: ', format(accuracy_score(y_test, predictions)))
