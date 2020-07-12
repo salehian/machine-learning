@@ -34,3 +34,6 @@ count_vector = CountVectorizer()
 
 # Fit the training data
 training_data = count_vector.fit_transform(X_train)
+
+# Transform testing data
+testing_data = count_vector.transform(X_test)
