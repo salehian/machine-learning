@@ -28,12 +28,15 @@ print('Number of rows in the data set: {}'.format(data.shape[0]))
 print('Number of rows in the training set: {}'.format(X_train.shape[0]))
 print('Number of rows in the test set: {}'.format(X_test.shape[0]))
 
-# Instantiate the CountVectorizer
-# It is used to convert a collection of text documents to a matrix of token counts
+# Create bag of words
 count_vector = CountVectorizer()
 
 # Fit the training data
 training_data = count_vector.fit_transform(X_train)
 
-# Transform testing data
+# Transform test data
 testing_data = count_vector.transform(X_test)
+
+#
+naive_bayes = MultinomialNB()
+naive_bayes.fit(training_data, y_train)
