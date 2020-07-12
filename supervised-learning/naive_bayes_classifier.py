@@ -35,8 +35,12 @@ count_vector = CountVectorizer()
 training_data = count_vector.fit_transform(X_train)
 
 # Transform test data
-testing_data = count_vector.transform(X_test)
+test_data = count_vector.transform(X_test)
 
 # Train Multinomial Naive Bayes Classifier
 naive_bayes = MultinomialNB()
 naive_bayes.fit(training_data, y_train)
+
+# Make Predictions
+predictions = naive_bayes.predict(test_data)
+
