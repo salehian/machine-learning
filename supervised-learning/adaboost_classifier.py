@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-from sklearn.svm import SVC
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
@@ -17,7 +18,11 @@ y = np.array(data['y'])
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=89)
 
 # Support Vector Machine Classifier
-model = SVC()
+# Hyperparameters
+# base_estimator: The base estimator from which the boosted ensemble is built.
+# n_estimators: 	The maximum number of estimators
+
+model = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(max_depth=2), n_estimators=4)
 
 # Fit the model to the train data
 model.fit(X_train,y_train)
