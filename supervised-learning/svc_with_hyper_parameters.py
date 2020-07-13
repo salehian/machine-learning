@@ -31,7 +31,7 @@ model.fit(X_train,y_train)
 y_pred = model.predict(X_test)
 
 acc = accuracy_score(y_test, y_pred)
-print('Accuracy:'%acc)
+print('Accuracy: %.2f'% acc)
 
 #Plot Test and Prediction Data
 fig, axs = plt.subplots(2, 1, constrained_layout=True)
