@@ -74,3 +74,20 @@ pca_samples = pca.transform(log_samples)
 
 # Create a DataFrame for the reduced data
 reduced_data = pd.DataFrame(reduced_data, columns = ['Dimension 1', 'Dimension 2'])
+
+# K-MEANS
+reduced_samples = pd.DataFrame(pca_samples, columns = ['Dimension 1', 'Dimension 2'])
+
+# Apply K-MEANS clustering algorithm
+clusterer = KMeans(n_clusters=2, random_state=29).fit(reduced_data)
+
+# Predict the cluster for each data point
+preds = clusterer.predict(reduced_data)
+centers = clusterer.cluster_centers_
+
+# Predict the cluster for each transformed sample data point
+sample_preds = clusterer.predict(reduced_samples)
+
+# Calculate the mean silhouette coefficient for the number of clusters chosen
+score = silhouette_score(reduced_data, clusterer.labels_, metric='euclidean')
+print("KMeans score", score)
