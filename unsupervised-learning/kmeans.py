@@ -30,7 +30,6 @@ log_samples = np.log(samples)
 pd.plotting.scatter_matrix(log_data, alpha = 0.3, figsize = (14,8), diagonal = 'kde');
 plt.show()
 
-
 all_outliers = np.array([], dtype='int64')
 
 # For each feature find the data points with extreme high or low values
@@ -57,42 +56,3 @@ outliers = all_outliers[counts>1]
 
 # Remove the outliers, if any were specified
 good_data = log_data.drop(log_data.index[outliers]).reset_index(drop = True)
-
-
-# TODO: Apply PCA to the good data with the same number of dimensions as features
-pca = PCA(n_components=6).fit(good_data)
-
-# TODO: Apply a PCA transformation to the sample log-data
-pca_samples = pca.transform(log_samples)
-
-# Generate PCA results plot
-#pca_results = rs.pca_results(good_data, pca)
-
-# TODO: Fit PCA to the good data using only two dimensions
-pca = PCA(n_components=2).fit(good_data)
-
-# TODO: Apply a PCA transformation the good data
-reduced_data = pca.transform(good_data)
-
-# TODO: Apply a PCA transformation to the sample log-data
-pca_samples = pca.transform(log_samples)
-
-# Create a DataFrame for the reduced data
-reduced_data = pd.DataFrame(reduced_data, columns = ['Dimension 1', 'Dimension 2'])
-
-# display cumulative variance:
-#print (pca_results['Explained Variance'].cumsum())
-
-
-reduced_samples = pd.DataFrame(pca_samples, columns = ['Dimension 1', 'Dimension 2'])
-
-# TODO: Apply your clustering algorithm of choice to the reduced data 
-clusterer = KMeans(n_clusters=2, random_state=29).fit(reduced_data)
-# TODO: Predict the cluster for each data point
-preds = clusterer.predict(reduced_data)
-centers = clusterer.cluster_centers_
-# TODO: Predict the cluster for each transformed sample data point
-sample_preds = clusterer.predict(reduced_samples)
-# TODO: Calculate the mean silhouette coefficient for the number of clusters chosen
-score = silhouette_score(reduced_data, clusterer.labels_, metric='euclidean')
-print("KMeans score", score)
