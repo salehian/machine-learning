@@ -56,3 +56,21 @@ outliers = all_outliers[counts>1]
 
 # Remove the outliers, if any were specified
 good_data = log_data.drop(log_data.index[outliers]).reset_index(drop = True)
+
+# Apply PCA to the good data with the same number of dimensions as features
+pca = PCA(n_components=6).fit(good_data)
+
+# Apply a PCA transformation to the sample log-data
+pca_samples = pca.transform(log_samples)
+
+# Fit PCA to the good data using only two dimensions
+pca = PCA(n_components=2).fit(good_data)
+
+# Apply a PCA transformation the good data
+reduced_data = pca.transform(good_data)
+
+# Apply a PCA transformation to the sample log-data
+pca_samples = pca.transform(log_samples)
+
+# Create a DataFrame for the reduced data
+reduced_data = pd.DataFrame(reduced_data, columns = ['Dimension 1', 'Dimension 2'])
