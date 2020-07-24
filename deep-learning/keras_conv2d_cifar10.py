@@ -29,3 +29,8 @@ y_test = keras.utils.to_categorical(y_test, num_classes)
 # Break a part from training set for validation set
 (X_train, X_valid) = X_train[9000:], X_train[:9000]
 (y_train, y_valid) = y_train[9000:], y_train[:9000]
+
+# Print number of train, test, and validation image samples
+print('Train Samples : %d'%X_train.shape[0])
+print('Test Samples : %d'%X_test.shape[0])
+print('Validation Samples : %d'%X_valid.shape[0])
