@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import keras
 from keras.datasets import cifar10
 from keras.utils import np_utils
-
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
 # Load the pre-shuffled train and test data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
@@ -34,3 +35,6 @@ y_test = keras.utils.to_categorical(y_test, num_classes)
 print('Train Samples : %d'%X_train.shape[0])
 print('Test Samples : %d'%X_test.shape[0])
 print('Validation Samples : %d'%X_valid.shape[0])
+
+# Define the model
+model = Sequential()
