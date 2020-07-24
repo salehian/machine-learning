@@ -22,7 +22,7 @@ X_train = X_train.astype('float32')/255
 y_train = y_train.astype('float32')/255
 
 # One-hot encode the labels
-num_classes = len(unique(y_train))
+num_classes = len(np.unique(y_train))
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
