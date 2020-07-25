@@ -38,3 +38,5 @@ print('Validation Samples : %d'%X_valid.shape[0])
 
 # Define the model
 model = Sequential()
+model.add(Conv2D(filters=16, kernel_size=2, padding='same', activation='relu',
+				 input_shape=(32, 32, 3)))
