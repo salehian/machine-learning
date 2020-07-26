@@ -6,6 +6,7 @@ from keras.datasets import cifar10
 from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from keras.callbacks import ModelCheckpoint
 
 # Load the pre-shuffled train and test data
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
@@ -51,4 +52,8 @@ model.summary()
 
 # Compile the model
 model.compile(loss='categorical_crossentropy', optimizer='rmsprop', 
-                  metrics=['accuracy']) 
+              metrics=['accuracy']) 
+
+# Addding a cheeckpoint
+checkpoint = ModelCheckpoint(filepath='model.weights.best.hdf5', verbose=1, 
+                               save_best_only=True)
