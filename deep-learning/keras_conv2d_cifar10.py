@@ -57,3 +57,8 @@ model.compile(loss='categorical_crossentropy', optimizer='rmsprop',
 # Addding a cheeckpoint
 checkpoint = ModelCheckpoint(filepath='model.weights.best.hdf5', verbose=1, 
                                save_best_only=True)
+
+# Train the model
+historty = model.fit(X_train, y_train, batch_size=32, epochs=100,
+					 validation_data=(X_valid, y_valid), callbacks=[checkpointer], 
+					 verbose=2, shuffle=True)
