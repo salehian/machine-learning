@@ -8,3 +8,9 @@ import torch.nn as nn
 import torch.nn.functional as functional
 import torch.optim as optim
 from torch.distributions import Categorical
+
+
+env = gym.make('CartPole-v0')
+env.seed(0)
+print('observation space:', env.observation_space)
+print('action space:', env.action_space)
